@@ -10,8 +10,17 @@ int broadcastPort = 8888;
 String dmxIP = "127.0.0.1";
 int dmxPort = 7777;
 
+public class STATE {
+  byte masterR;
+  byte masterG;
+  byte masterB;
+
+  STATE() { }
+}
+
 OPC opc;
 PImage dot;
+STATE state;
 
 void setup()
 {
@@ -81,13 +90,19 @@ public void evtDisconnect( String ip ) {
 }
 
 public void evtR( float v ) {
-  println( "evtR: " + v );
+  state.MasterR = floor(v);
+
+  println( "evtR: " + state.Master );
 }
 
 public void evtG( float v ) {
-  println( "evtG: " + v );
+  state.MasterG = floor(v);
+
+  println( "evtG: " + state.MasterG );
 }
 
 public void evtB( float v ) {
-  println( "evtB: " + v );
+  state.MasterB = floor(v);
+
+  println( "evtB: " + state.MasterB );
 }
